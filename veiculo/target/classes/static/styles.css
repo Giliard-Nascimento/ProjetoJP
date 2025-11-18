@@ -3,10 +3,10 @@
 body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #1f2933; }
  
 :root {
-  --brand-dark: #0d47a1;
-  --brand-mid: #1565c0;
-  --brand-accent: #42a5f5;
-  --brand-accent-soft: #e3f2fd;
+  --brand-dark:#121212;
+  --brand-mid:#FF5722;
+  --brand-accent:#FFAB91;
+  --brand-accent-soft: #FFF3E0;
   --text-color: #1f2933;
   --border-color: #d9e2ec;
   --radius-sm: 4px;
@@ -47,8 +47,24 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #
 /* Logo SVG refinamento */
 .logo svg { display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); }
 
-.minha-section{
-    display: none;
+.minha-section {
+  text-align: center;
+  display: none;
+  overflow-x: auto;
+}
+
+main {
+    padding: 30px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section h2 {
+    color: var(--brand-dark);
+    margin-bottom: 24px;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 /* Responsividade */
@@ -72,56 +88,78 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #
   .site-header { padding: 10px 16px; }
 }
 
-.minha-section {
-  text-align: center;
-}
+
 
 
 
 /* Estilo geral da tabela */
 table {
-  width: 100%; /* Faz a tabela ocupar toda a largura disponível */
+  width: 80%; /* Define a largura da tabela */
   border-collapse: collapse; /* Remove espaços entre as células */
-  margin: 20px 0; /* Adiciona espaçamento acima e abaixo da tabela */
-  font-size: 1rem; /* Define um tamanho de fonte padrão */
+  margin: 20px auto; /* Adiciona espaçamento acima e abaixo da tabela */
+  box-shadow: var(--shadow-md); /* Adiciona sombra à tabela */
+  background-color: #ffffff; /* Fundo branco para a tabela */
   text-align: left; /* Alinha o texto à esquerda */
-  background-color: #f9f9f9; /* Fundo leve para a tabela */
-  border: 1px solid #ddd; /* Adiciona uma borda leve */
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 /* Estilo do cabeçalho da tabela */
 table thead th {
-  background-color: #ffffff; /* Cor de fundo para o cabeçalho */
-  color: #000000; /* Cor do texto no cabeçalho */
-  padding: 12px; /* Adiciona espaçamento interno às células do cabeçalho */
-  font-weight: bold; /* Destaca o texto do cabeçalho */
+  background-color: var(--brand-dark); /* Cor de fundo do cabeçalho */
+  color: #ffffff; /* Cor do texto do cabeçalho */
+  font-weight: 600; /* Destaca o texto do cabeçalho */
+  padding: 16px 12px; /* Adiciona espaçamento interno às células do cabeçalho */
   text-transform: uppercase; /* Deixa o texto em maiúsculas */
-  border: 1px solid #ddd; /* Adiciona borda ao cabeçalho */
+  font-size: 0.85rem; /* Tamanho da fonte do cabeçalho */
+  letter-spacing: 0.5px; /* Espaçamento entre letras */
+  border-bottom: 2px solid var(--brand-mid);
+  text-align: center; /* Centraliza o texto do cabeçalho */
 }
 
 /* Estilo do título da tabela */
 table thead tr:first-child th {
-  background-color: #ffffff; /* Cor de fundo mais escura para o título */
-  font-size: 1.2rem; /* Aumenta o tamanho da fonte do título */
+  background-color: var(--brand-dark); /* Cor de fundo mais escura para o título */
+  color: #ffffff; /* Cor do texto do título */
+  font-weight: 700; /* Destaca ainda mais o texto do título */
+  padding: 11px 7px; /* Adiciona espaçamento interno ao título */
+  text-transform: uppercase; /* Deixa o texto em maiúsculas */
+  font-size: 1rem; /* Aumenta o tamanho da fonte do título */
+  letter-spacing: 0.3px; /* Espaçamento entre letras */
+  border-bottom: 2px solid var(--brand-mid);
   text-align: center; /* Centraliza o texto do título */
-  padding: 16px; /* Adiciona espaçamento interno ao título */
 }
+
 
 /* Estilo do corpo da tabela */
 table tbody td {
-  padding: 10px; /* Adiciona espaçamento interno às células */
-  border-bottom: 1px solid #ddd; /* Adiciona uma borda inferior às células */
+  padding: 5px 5px; /* Adiciona espaçamento interno às células */
+  border-bottom: 1px solid var(--border-color); /* Adiciona uma borda inferior às células */
+  font-size: 0.7rem; /* Tamanho da fonte do corpo */
+  vertical-align: middle; /* Alinha o conteúdo verticalmente ao meio */
+  text-align: center; /* Centraliza o texto nas células */
 }
 
 /* Linhas alternadas no corpo da tabela */
 table tbody tr:nth-child(even) {
-  background-color: #f2f2f2; /* Adiciona uma cor de fundo alternada para as linhas pares */
+  background-color: #fcfcfc; /* Adiciona uma cor de fundo alternada para as linhas pares */
 }
 
 /* Efeito de hover nas linhas */
 table tbody tr:hover {
-  background-color: #e6f7ff; /* Destaque ao passar o mouse */
+  background-color: var(--brand-accent-soft); /* Destaque ao passar o mouse */
   cursor: pointer; /* Mostra o cursor como "pointer" ao passar o mouse */
+  transform: translateY(-1px);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
 }
 
 #modal{
@@ -130,7 +168,7 @@ table tbody tr:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: #fff;
   padding: 20px;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
@@ -175,18 +213,18 @@ table tbody tr:hover {
 
 #modal button {
   background: var(--brand-mid);
-  color: white;
+  color: #fff;
   border: none;
   padding: 10px 15px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   cursor: pointer;
   width: 50%;
 }
 
 .botao-novo{
   margin-top: 20px;
-  background: var(--brand-dark);
-  color: white;
+  background: var(--brand-accent);
+  color: #fff;
   border: none;
   padding: 10px;
   border-radius: var(--radius-md);
@@ -209,7 +247,7 @@ table tbody tr:hover {
 
   tbody td {
       display: block; /* Faz as células ocuparem toda a largura */
-      text-align: right; /* Alinha o texto à direita */
+      text-align: center; /* Centraliza o texto nas células */
       padding: 8px 12px; /* Ajusta o espaçamento interno */
       border-bottom: 1px solid #ddd;
   }

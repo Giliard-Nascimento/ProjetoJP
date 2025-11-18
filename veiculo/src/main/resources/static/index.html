@@ -14,13 +14,25 @@
         <header class="site-header">
             <div class="brand">
                 <a href="/" class="logo" aria-label="Pagina inicial">
-                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-                        <rect x="4" y="18" width="40" height="14" rx="7" fill="#0d47a1"/>
-                        <circle cx="16" cy="34" r="4" fill="#263238"/>
-                        <circle cx="32" cy="34" r="4" fill="#263238"/>
-                        <rect x="14" y="14" width="20" height="6" rx="3" fill="#42a5f5"/>
-                        <rect x="20" y="8" width="8" height="7" rx="2" fill="#0d47a1"/>
-                    </svg>
+                    <svg width="40" height="40" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="car-body" x1="50" y1="50" x2="150" y2="150" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#0d47a1"/>
+                            <stop offset="1" stop-color="#1976d2"/>
+                        </linearGradient>
+                        <linearGradient id="car-window" x1="70" y1="70" x2="130" y2="130" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#42a5f5"/>
+                            <stop offset="1" stop-color="#bbdefb"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M183.333 108.333C187.752 108.333 191.354 111.762 191.645 116.162L199.423 127.838C200.583 129.584 199.643 132.008 197.749 132.598L180.167 137.5V158.333C180.167 162.936 176.436 166.667 171.833 166.667H160.167C155.564 166.667 151.833 162.936 151.833 158.333V150H48.1667V158.333C48.1667 162.936 44.4358 166.667 39.8333 166.667H28.1667C23.5642 166.667 19.8333 162.936 19.8333 158.333V137.5L2.25075 132.598C0.356875 132.008 -0.583042 129.584 0.577292 127.838L8.35517 116.162C8.64617 111.762 12.2477 108.333 16.6667 108.333H30.1667L54.7917 64.5833C58.4167 58.5833 65.5 54.1667 73.5 54.1667H126.5C134.5 54.1667 141.583 58.5833 145.208 64.5833L169.833 108.333H183.333Z" fill="url(#car-body)"/>
+                    <path d="M138.5 70.8333L126.5 54.1667H73.5L61.5 70.8333H138.5Z" fill="#0d47a1"/>
+                    <path d="M135.667 79.1667L76.4167 79.1667C70.0833 79.1667 65.5 83.75 65.5 90.0833V108.333H144.833V90.0833C144.833 83.75 142 79.1667 135.667 79.1667Z" fill="url(#car-window)"/>
+                    <circle cx="166" cy="125" r="18" fill="#263238"/>
+                    <circle cx="166" cy="125" r="10" fill="#BDBDBD"/>
+                    <circle cx="34" cy="125" r="18" fill="#263238"/>
+                    <circle cx="34" cy="125" r="10" fill="#BDBDBD"/>
+                </svg>
                     <span class="brand-text">MultiCar</span>
                 </a>
             </div>
@@ -72,9 +84,6 @@
                 <div id="modal-content-veiculo" class="modal-content modal-content-veiculo">
                     <div id="modal-title">Cadastro de Veículo</div>
                     <form id="form-veiculo">
-                        <label for="fabricante-veiculo">Fabricante do Veiculo:</label>
-                        <select id="fabricante-veiculo" name="fabricante-veiculo" required>
-                        </select>
                         <label for="modelo-veiculo">Modelo do Veiculo:</label>
                         <select id="modelo-veiculo" name="modelo-veiculo" required>
                         </select>
@@ -85,13 +94,16 @@
                         <label for="cor-veiculo">Cor do Veiculo:</label>
                         <input type="text" id="cor-veiculo" name="cor-veiculo" required>
                         <br>
+                        <label for="valor-veiculo">Valor do Veiculo:</label>
+                        <input type="number" step="0.01" id="valor-veiculo" name="valor-veiculo" required>
+                        <br>
                         <label for="ano-veiculo">Ano do Veiculo:</label>
                         <input type="number" id="ano-veiculo" name="ano-veiculo" required>
                         <br>
                         <label for="descricao-veiculo">Descrição do Veiculo:</label>
                         <input type="text" id="descricao-veiculo" name="descricao-veiculo" required>
                         <br>
-                        <button class="botao-enviar">Enviar</button>
+                        <button class="botao-enviar" id="salvar-veiculo">Enviar</button>
                     </form>
                 </div>
             </div>

@@ -17,8 +17,10 @@ public final class VeiculoMapper {
         dto.setId(entity.getId());
         dto.setPlaca(entity.getPlaca());
         dto.setCor(entity.getCor());
+        dto.setValor(entity.getValor());
         dto.setAno(entity.getAno());
         dto.setDescricao(entity.getDescricao());
+        dto.setDataCadastro(entity.getDataCadastro());
         dto.setModelo(ModeloMapper.toDto(entity.getModelo()));
         
         return dto;
@@ -30,8 +32,10 @@ public final class VeiculoMapper {
         return new Veiculo(dto.getId(), 
         dto.getPlaca(), 
         dto.getCor(), 
+        dto.getValor(),
         dto.getAno(), 
         dto.getDescricao(), 
+        dto.getDataCadastro(),
         ModeloMapper.toEntity(dto.getModelo()));  
     }
 

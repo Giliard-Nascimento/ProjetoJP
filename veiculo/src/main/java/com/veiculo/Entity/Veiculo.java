@@ -1,6 +1,11 @@
 package com.veiculo.Entity;
 
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,11 +27,18 @@ public class Veiculo {
     @Column(nullable = false, length = 50)
     private String cor;
 
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal valor;
+
     @Column(nullable = false)
     private Integer ano;  
     
     @Column(length = 500)
     private String descricao;
+
+    @CreationTimestamp
+    @Column(name = "data_cadastro", nullable = false, updatable = false)
+    private LocalDateTime dataCadastro;
 
     @ManyToOne
     @JoinColumn(name = "modelo_id", nullable = false)
@@ -35,13 +47,15 @@ public class Veiculo {
     public Veiculo() {
     }
 
-    public Veiculo(Long id, String placa, String cor, Integer ano, String descricao,
+    public Veiculo(Long id, String placa, String cor, BigDecimal valor, Integer ano, String descricao, LocalDateTime dataCadastro,
             Modelo modelo) {
         this.id = id;
         this.placa = placa;
         this.cor = cor;
+        this.valor = valor;
         this.ano = ano;
         this.descricao = descricao;
+        this.dataCadastro = dataCadastro;
         this.modelo = modelo;
     }
 
@@ -68,6 +82,13 @@ public class Veiculo {
     public void setCor(String cor) {
         this.cor = cor;
     }
+    
+    public BigDecimal getValor() {
+        return valor;
+    }
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
 
     public Integer getAno() {
         return ano;
@@ -83,6 +104,13 @@ public class Veiculo {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public LocalDateTime getDataCadastro() {
+        return dataCadastro;
+    }
+    public void setDataCadastro(LocalDateTime dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
 

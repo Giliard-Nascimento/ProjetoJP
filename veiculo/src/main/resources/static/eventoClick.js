@@ -46,6 +46,27 @@ document.getElementById("novo-modelo").addEventListener("click", async function(
     setMostrarOcultarElemento(false, ".modal-content-modelo");
 });
 
+document.getElementById("novo-veiculo").addEventListener("click", async function(event){
+    setMostrarOcultarElemento(true, ".modal-content");
+   const dadosModelos = await getData("http://localhost:8080/api/modelos");
+    if(dadosModelos.status === 404 || dadosModelos.error){
+        alert ("Erro ao carregar modelos. erro: " + dadosModelos.message);
+        return;
+    
+    }
+    setRemoverElementos("#modelo-veiculo option");
+
+    document.getElementById("modelo-veiculo").appendChild(new Option("Selecione um modelo", ""));
+   dadosModelos.forEach(function(modelo){
+        const option = document.createElement("option");
+        option.value = modelo.id;
+        option.textContent = modelo.nome + " (" + modelo.fabricante.nome + ")";
+        document.getElementById("modelo-veiculo").appendChild(option);
+   });
+    MODAL.style.display = "block";
+    setMostrarOcultarElemento(false, ".modal-content-veiculo");
+});
+
 
 document.getElementById("bt-fabricantes").addEventListener("click", async function(event){
     setMostrarOcultarElemento(true, ".minha-section");
@@ -136,3 +157,44 @@ document.getElementById("bt-veiculos").addEventListener("click", async function(
     const dadosVeiculos = await getData("http://localhost:8080/api/veiculos");
     document.querySelector("#veiculos").appendChild(criarTabelaVeiculo(dadosVeiculos));
 });
+
+document.getElementById("salvar-veiculo").addEventListener("click", async function(event){
+    event.preventDefault();
+    const modeloId = document.getElementById("modelo-veiculo").value;
+    const placa = document.getElementById("placa-veiculo").value;
+    const cor = document.getElementById("cor-veiculo").value;
+    const valor = parseFloat(document.getElementById("valor-veiculo").value);
+    const ano = parseInt(document.getElementById("ano-veiculo").value);
+    const descricao = document.getElementById("descricao-veiculo").value;
+    const novoVeiculo = {
+        modelo:{
+            id: modeloId
+        },
+        placa: placa,
+        cor: cor,
+        valor: valor,
+        ano: ano,
+        descricao: descricao
+    };
+
+    const resultado =  await postData("http://localhost:8080/api/veiculos", novoVeiculo);
+
+    if(resultado.ok) {
+        alert("Veículo criado com sucesso!");
+        document.getElementById("modelo-veiculo").value = "";
+        document.getElementById("placa-veiculo").value = "";
+        document.getElementById("cor-veiculo").value = "";
+        document.getElementById("valor-veiculo").value = "";
+        document.getElementById("ano-veiculo").value = "";
+        document.getElementById("descricao-veiculo").value = "";
+        MODAL.style.display = "none";
+
+        setRemoverElementos(".tabela-dados");
+        document.querySelector("#veiculos").style.display = "block";
+        const dadosVeiculos = await getData("http://localhost:8080/api/veiculos");
+        document.querySelector("#veiculos").appendChild(criarTabelaVeiculo(dadosVeiculos));
+    } else {
+        alert("Erro ao criar veículo: " + resultado.message);
+    }
+
+        } );

@@ -20,6 +20,11 @@ const criarTabela = function(dados, titulo = "Tabela", classe){
         tr.appendChild(th);
     });
 
+    const thAcoes = document.createElement("th");
+    thAcoes.textContent = "DELETAR";
+    thAcoes.setAttribute('data-label', 'AÇÕES'); // FIX 2
+    tr.appendChild(thAcoes);
+
     tabela.classList.add(classe);    
 
     thead.appendChild(tr);

@@ -47,7 +47,10 @@ public class VeiculoService {
                 .orElseThrow(() -> new RuntimeException("Veículo com ID " + id + " não encontrado."));
         existente.setPlaca(dto.getPlaca());
         existente.setCor(dto.getCor());
+        existente.setValor(dto.getValor());
         existente.setAno(dto.getAno());
+        existente.setDescricao(dto.getDescricao());
+        existente.setDataCadastro(dto.getDataCadastro());
         return VeiculoMapper.toDto(repository.save(existente));
     }
 

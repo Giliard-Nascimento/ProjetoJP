@@ -10,7 +10,7 @@ const criarTabelaVeiculo = function(dados){
     trTittle.appendChild(th);
     thead.appendChild(trTittle);
 
-const cabecalho = ["Modelo", "Fabricante", "País de Origem","Placa", "Cor", "Ano", "Descrição"];
+const cabecalho = ["Modelo", "Fabricante", "País de Origem","Placa", "Cor", "Ano", "Descrição", "DELETAR"];
 const tr = document.createElement("tr");
 cabecalho.forEach(function(campo){
     const th = document.createElement("th");
@@ -60,7 +60,7 @@ dados.forEach(function(item){
     tdDescricao.textContent = item.descricao;
     tr.appendChild(tdDescricao);
 
-    //icones
+    //Deletar veículo
     const deletar = document.createElement("td");
     deletar.innerHTML = `<button class="btn-deletar">🗑️</button>`;
     deletar.addEventListener("click", async function(){

@@ -1,20 +1,28 @@
 package com.veiculo.dto;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 public class VeiculoDTO {
     private Long id;
     private String placa;
     private String cor;
+    private BigDecimal valor;
     private Integer ano;
     private String descricao;
+    private LocalDateTime dataCadastro;
     private ModeloDTO modelo;
 
     public VeiculoDTO() {}
 
-    public VeiculoDTO(Long id, String placa, String cor, Integer ano, String descricao, ModeloDTO modelo) {
+    public VeiculoDTO(Long id, String placa, String cor, BigDecimal valor, Integer ano, String descricao, LocalDateTime dataCadastro, ModeloDTO modelo) {
         this.id = id;
         this.placa = placa;
         this.cor = cor;
+        this.valor = valor;
         this.ano = ano;
+        this.descricao = descricao;
+        this.dataCadastro = dataCadastro;
         this.modelo = modelo;
     }
 
@@ -42,6 +50,13 @@ public class VeiculoDTO {
         this.cor = cor;
     }
 
+    public BigDecimal getValor() {
+        return valor;
+    }
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
     public Integer getAno() {
         return ano;
     }
@@ -56,6 +71,14 @@ public class VeiculoDTO {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public LocalDateTime getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDateTime dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
     public ModeloDTO getModelo() {
