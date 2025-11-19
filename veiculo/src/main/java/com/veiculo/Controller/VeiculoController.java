@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.veiculo.dto.VeiculoDTO;
@@ -48,5 +49,20 @@ public class VeiculoController {
     public ResponseEntity<Void> deletar (@PathVariable Long id){
         service.deletar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/placa/{placa}")
+    public VeiculoDTO buscarPorPlaca (@PathVariable String placa){
+        return service.buscarPorPlaca(placa);
+    }
+
+    @GetMapping("/existe/{placa}")
+    public boolean existePorPlaca (@PathVariable String placa){
+        return service.existePorPlaca(placa);
+    }
+
+    @GetMapping("/placa")
+    public List<VeiculoDTO> buscarPorPlacaParcial(@RequestParam("trecho_placa") String trecho_placa){
+        return service.buscarPorPlacaParcial(trecho_placa);
     }
 }

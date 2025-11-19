@@ -3,6 +3,8 @@ package com.veiculo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +18,9 @@ public class VeiculoService {
     
     @Autowired
     private VeiculoRepository repository;
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Transactional
     public VeiculoDTO criar (VeiculoDTO dto){
@@ -62,4 +67,39 @@ public class VeiculoService {
             repository.deleteById(id);
         }
     }
-}
+
+
+    @Transactional (readOnly = true)
+    public VeiculoDTO buscarPorPlaca(String placa){
+        if(placa == null || placa.isBlank()){
+            throw new IllegalArgumentException(messageSource.getMessage("veiculo.placa.obrigatoria", null, LocaleContextHolder.getLocale()));
+
+        }   
+
+        java.util.List<Veiculo> resultados = repository.findByPlacaContainingIgnoreCase(placa.trim());
+        return resultados.stream()
+                .filter(v -> placa.trim().equalsIgnoreCase(v.getPlaca()))
+                .findFirst()
+                .map(VeiculoMapper::toDto)
+                .orElseThrow(() -> new RuntimeException(messageSource.getMessage("veiculo.nao.encontrado", null, LocaleContextHolder.getLocale())));
+    }
+
+
+
+    @Transactional (readOnly = true)
+    public boolean existePorPlaca (String placa){
+        return repository.existsByPlaca(placa);
+    }
+
+    @Transactional (readOnly = true)
+    public List<VeiculoDTO> buscarPorPlacaParcial(String termo){
+        if (termo == null || termo.isBlank()) {
+            throw new IllegalArgumentException(messageSource.getMessage("veiculo.placa.obrigatoria", null, LocaleContextHolder.getLocale()));
+            
+        }
+        return VeiculoMapper.toDtoList(repository.findByPlacaContainingIgnoreCase(termo.trim()));
+
+     }   
+    }
+
+

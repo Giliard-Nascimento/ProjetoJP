@@ -161,8 +161,8 @@ document.getElementById("bt-veiculos").addEventListener("click", async function(
 document.getElementById("salvar-veiculo").addEventListener("click", async function(event){
     event.preventDefault();
     const modeloId = document.getElementById("modelo-veiculo").value;
-    const placa = document.getElementById("placa-veiculo").value;
-    const cor = document.getElementById("cor-veiculo").value;
+    const placa = document.getElementById("placa-veiculo").value.trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+    const cor = document.getElementById("cor-veiculo").value.trim();
     const valor = parseFloat(document.getElementById("valor-veiculo").value);
     const ano = parseInt(document.getElementById("ano-veiculo").value);
     const descricao = document.getElementById("descricao-veiculo").value;
@@ -170,11 +170,11 @@ document.getElementById("salvar-veiculo").addEventListener("click", async functi
         modelo:{
             id: modeloId
         },
-        placa: placa,
-        cor: cor,
-        valor: valor,
-        ano: ano,
-        descricao: descricao
+        placa,
+        cor,
+        valor,
+        ano,
+        descricao
     };
 
     const resultado =  await postData("http://localhost:8080/api/veiculos", novoVeiculo);
